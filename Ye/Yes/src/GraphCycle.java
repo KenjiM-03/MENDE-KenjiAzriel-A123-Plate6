@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class GraphCycle extends Graph {
 
     public GraphCycle(int numVertices, boolean isDirected) {
@@ -24,11 +22,13 @@ public class GraphCycle extends Graph {
         visited[u] = true;
         recursionStack[u] = true;
 
-        for (int v : adjList.get(u)) {
-            if (!visited[v] && hasCycleUtil(v, visited, recursionStack)) {
-                return true;
-            } else if (recursionStack[v]) {
-                return true;
+        for (int v = 0; v < numVertices; v++) {
+            if (adjMatrix[u][v]) {
+                if (!visited[v] && hasCycleUtil(v, visited, recursionStack)) {
+                    return true;
+                } else if (recursionStack[v]) {
+                    return true;
+                }
             }
         }
 

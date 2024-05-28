@@ -1,44 +1,37 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Graph {
-    protected List<List<Integer>> adjList;
+    protected boolean[][] adjMatrix;
     protected int numVertices;
     protected boolean isDirected;
 
-    // Initialize the adjacency list
+    // Initialize the matrix
     public Graph(int numVertices, boolean isDirected) {
         this.numVertices = numVertices;
         this.isDirected = isDirected;
-        adjList = new ArrayList<>(numVertices);
-        for (int i = 0; i < numVertices; i++) {
-            adjList.add(new ArrayList<>());
-        }
+        adjMatrix = new boolean[numVertices][numVertices];
     }
 
     // Add edges
     public void addEdge(int i, int j) {
-        adjList.get(i).add(j);
+        adjMatrix[i][j] = true;
         if (!isDirected) {
-            adjList.get(j).add(i);
+            adjMatrix[j][i] = true;
         }
     }
 
     // Remove edges
     public void removeEdge(int i, int j) {
-        adjList.get(i).remove((Integer) j);
+        adjMatrix[i][j] = false;
         if (!isDirected) {
-            adjList.get(j).remove((Integer) i);
+            adjMatrix[j][i] = false;
         }
     }
 
-    // Print the adjacency list
+    // Print the matrix
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < numVertices; i++) {
-            s.append(i + ": ");
-            for (int j : adjList.get(i)) {
-                s.append(j + " ");
+            for (int j = 0; j < numVertices; j++) {
+                s.append((adjMatrix[i][j] ? 1 : 0) + " ");
             }
             s.append("\n");
         }
