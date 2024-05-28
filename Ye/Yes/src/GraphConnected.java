@@ -1,32 +1,19 @@
-import java.util.ArrayList;
-import java.util.List;
+public class GraphConnected extends Graph {
 
-public class GraphConnected {
-    private int V;
-    
-    private List<List<Integer>> adj;
-    // Initializes an empty graph with V vertices
-    public GraphConnected(int V) {
-        this.V = V;
-        adj = new ArrayList<>(V);
-        for (int i = 0; i < V; i++) {
-            adj.add(new ArrayList<>());
-        }
+    // Constructor to initialize the graph
+    public GraphConnected(int numVertices, boolean isDirected) {
+        super(numVertices, isDirected);
     }
-    // adds an undirected edge beteen vertices
-    public void addEdge(int u, int v) {
-        adj.get(u).add(v);
-        adj.get(v).add(u);
-    }
-   //Checks if the graph is connected
+
+    // Checks if the graph is connected
     public boolean isConnected() {
-        boolean[] visited = new boolean[V];
+        boolean[] visited = new boolean[numVertices];
 
         // Start DFS from the first vertex
         dfs(0, visited);
 
         // Check if all vertices have been visited
-        for (int i = 0; i < V; i++) {
+        for (int i = 0; i < numVertices; i++) {
             if (!visited[i]) {
                 return false;
             }
@@ -35,12 +22,13 @@ public class GraphConnected {
         return true;
     }
 
+    // Counts the number of connected components
     public int countComponents() {
-        boolean[] visited = new boolean[V];
+        boolean[] visited = new boolean[numVertices];
         int count = 0;
 
         // Check for components in each unvisited vertex
-        for (int i = 0; i < V; i++) {
+        for (int i = 0; i < numVertices; i++) {
             if (!visited[i]) {
                 count++;
                 dfs(i, visited);
@@ -53,25 +41,31 @@ public class GraphConnected {
     private void dfs(int u, boolean[] visited) {
         visited[u] = true;
 
-        for (int v : adj.get(u)) {
-            if (!visited[v]) {
-                dfs(v, visited);
+        for (int v = 0; v < numVertices; v++) {
+            if (adjMatrix[u][v]) {
+                if (!visited[v]) {
+                    dfs(v, visited);
+                }
             }
         }
     }
 
+
     public static void main(String[] args) {
-        // This is used to modify the graph
-        GraphConnected g = new GraphConnected(6);
-        g.addEdge(1, 5);
-        g.addEdge(0, 2);
-        g.addEdge(2, 4);
+        // Create an undirected graph
+        GraphConnected g = new GraphConnected(4, false);
+        g.addEdge(0, 1);
+        g.addEdge(1, 2);
+        g.addEdge(2, 3);
+        g.addEdge(3, 0);
+
+        System.out.print(g.toString());
+
         if (g.isConnected()) {
             System.out.println("Graph is connected");
         } else {
             System.out.println("Graph is not connected");
             System.out.println("Number of connected components: " + g.countComponents());
         }
-        
     }
 }
