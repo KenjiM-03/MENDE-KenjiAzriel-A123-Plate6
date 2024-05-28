@@ -1,36 +1,22 @@
-import java.util.ArrayList;
 import java.util.List;
-// Program that checks if the graph is a cycle
-public class GraphCycle {
-    //V is the #of vertices
-    private int V;
-    private List<List<Integer>> adj;
 
-    public GraphCycle(int V) {
-        this.V = V;
-        adj = new ArrayList<>(V);
-        for (int i = 0; i < V; i++) {
-            adj.add(new ArrayList<>());
-        }
-    }
+public class GraphCycle extends Graph {
 
-    public void addEdge(int u, int v) {
-        adj.get(u).add(v);
+    public GraphCycle(int numVertices, boolean isDirected) {
+        super(numVertices, isDirected);
     }
 
     public boolean hasCycle() {
-        boolean[] visited = new boolean[V];
-        boolean[] recursionStack = new boolean[V];
+        boolean[] visited = new boolean[numVertices];
+        boolean[] recursionStack = new boolean[numVertices];
 
-        // Check for cycle in each unvisited vertex
-        for (int i = 0; i < V; i++) {
+        for (int i = 0; i < numVertices; i++) {
             if (!visited[i]) {
                 if (hasCycleUtil(i, visited, recursionStack)) {
                     return true;
                 }
             }
         }
-
         return false;
     }
 
@@ -38,7 +24,7 @@ public class GraphCycle {
         visited[u] = true;
         recursionStack[u] = true;
 
-        for (int v : adj.get(u)) {
+        for (int v : adjList.get(u)) {
             if (!visited[v] && hasCycleUtil(v, visited, recursionStack)) {
                 return true;
             } else if (recursionStack[v]) {
@@ -47,18 +33,17 @@ public class GraphCycle {
         }
 
         recursionStack[u] = false;
-
         return false;
     }
 
     public static void main(String[] args) {
-        GraphCycle g = new GraphCycle(3);
-        //Uses Depth first search algorithm to make edges u is the starting point v is the end point
+        GraphCycle g = new GraphCycle(4, false);
         g.addEdge(0, 1);
-        g.addEdge(1, 0);
-        g.addEdge(2, 1);
         g.addEdge(1, 2);
-       
+        g.addEdge(2, 3);
+        g.addEdge(3, 0);
+
+        System.out.print(g);
 
         if (g.hasCycle()) {
             System.out.println("Graph has a cycle");

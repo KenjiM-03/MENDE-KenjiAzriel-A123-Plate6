@@ -1,45 +1,51 @@
-public class Graph {
-    private boolean adjMatrix[][];
-    private int numVertices;
-    private boolean isDirected;
+import java.util.ArrayList;
+import java.util.List;
 
-    // Initialize the matrix
+public class Graph {
+    protected List<List<Integer>> adjList;
+    protected int numVertices;
+    protected boolean isDirected;
+
+    // Initialize the adjacency list
     public Graph(int numVertices, boolean isDirected) {
         this.numVertices = numVertices;
         this.isDirected = isDirected;
-        adjMatrix = new boolean[numVertices][numVertices];
+        adjList = new ArrayList<>(numVertices);
+        for (int i = 0; i < numVertices; i++) {
+            adjList.add(new ArrayList<>());
+        }
     }
 
     // Add edges
     public void addEdge(int i, int j) {
-        adjMatrix[i][j] = true;
+        adjList.get(i).add(j);
         if (!isDirected) {
-            adjMatrix[j][i] = true;
+            adjList.get(j).add(i);
         }
     }
 
     // Remove edges
     public void removeEdge(int i, int j) {
-        adjMatrix[i][j] = false;
+        adjList.get(i).remove((Integer) j);
         if (!isDirected) {
-            adjMatrix[j][i] = false;
+            adjList.get(j).remove((Integer) i);
         }
     }
 
-    // Print the matrix
+    // Print the adjacency list
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < numVertices; i++) {
             s.append(i + ": ");
-            for (boolean j : adjMatrix[i]) {
-                s.append((j ? 1 : 0) + " ");
+            for (int j : adjList.get(i)) {
+                s.append(j + " ");
             }
             s.append("\n");
         }
         return s.toString();
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Graph g = new Graph(4, true); // create a directed graph
 
         g.addEdge(0, 1);
@@ -49,7 +55,5 @@ public class Graph {
         g.addEdge(2, 3);
 
         System.out.print(g.toString());
-
-      
     }
 }
