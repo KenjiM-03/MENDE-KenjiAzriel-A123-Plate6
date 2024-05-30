@@ -38,7 +38,7 @@ public class GraphConnected extends Graph {
         return count;
     }
 
-    private void dfs(int u, boolean[] visited) {
+    protected void dfs(int u, boolean[] visited) {
         visited[u] = true;
 
         for (int v = 0; v < numVertices; v++) {
@@ -58,8 +58,8 @@ public class GraphConnected extends Graph {
         g.addEdge(1, 2);
         g.addEdge(2, 3);
         g.addEdge(3, 0);
-
-        System.out.print(g.toString());
+        System.out.println("Adjacency Matrix: ");
+        System.out.print(g);
 
         if (g.isConnected()) {
             System.out.println("Graph is connected");
