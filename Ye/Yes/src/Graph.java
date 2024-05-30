@@ -1,11 +1,14 @@
+//Base Graph Constructor
 
 
 public class Graph {
     protected boolean[][] adjMatrix;
     protected int numVertices;
     protected boolean isDirected;
+    protected int numEdges;
 
     // Initialize the matrix
+
     public Graph(int numVertices, boolean isDirected) {
         this.numVertices = numVertices;
         this.isDirected = isDirected;
@@ -64,5 +67,6 @@ public class Graph {
 
         // Print degrees of each vertex
         graph.printDegrees();
+        System.out.println(graph);
         }
     }
