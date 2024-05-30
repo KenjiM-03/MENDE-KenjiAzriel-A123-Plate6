@@ -1,3 +1,5 @@
+
+
 public class Graph {
     protected boolean[][] adjMatrix;
     protected int numVertices;
@@ -25,7 +27,19 @@ public class Graph {
             adjMatrix[j][i] = false;
         }
     }
-
+    // Calculate the degree of each vertex
+// Method to compute and print the degree of each vertex
+    public void printDegrees() {
+        for (int i = 0; i < numVertices; i++) {
+            int degree = 0;
+            for (int j = 0; j < numVertices; j++) {
+                if (adjMatrix[i][j]) {
+                    degree++;
+                }
+            }
+            System.out.println("Vertex " + i + " has degree: " + degree);
+        }
+    }
     // Print the matrix
     public String toString() {
         StringBuilder s = new StringBuilder();
@@ -42,11 +56,11 @@ public class Graph {
         Graph g = new Graph(4, true); // create a directed graph
 
         g.addEdge(0, 1);
-        g.addEdge(0, 2);
         g.addEdge(1, 2);
-        g.addEdge(2, 0);
         g.addEdge(2, 3);
+        g.addEdge(3, 0);
 
         System.out.print(g.toString());
+        g.printDegrees();
+        }
     }
-}
