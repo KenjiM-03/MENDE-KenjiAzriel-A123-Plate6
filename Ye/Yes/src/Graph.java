@@ -53,14 +53,16 @@ public class Graph {
     }
 
     public static void main(String[] args) {
-        Graph g = new Graph(4, true); // create a directed graph
+        Graph graph = new Graph(5, false);
 
-        g.addEdge(0, 1);
-        g.addEdge(1, 2);
-        g.addEdge(2, 3);
-        g.addEdge(3, 0);
+        // Adding edges
+        graph.addEdge(0, 1);
+        graph.addEdge(0, 2);
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(3, 4);
 
-        System.out.print(g.toString());
-        g.printDegrees();
+        // Print degrees of each vertex
+        graph.printDegrees();
         }
     }
