@@ -1,4 +1,5 @@
-public class adjMatrix {
+//Problem 2
+public class Problem2 {
     static class Graph {
         //Initialize Vertex
         int v;
@@ -50,14 +51,15 @@ public class adjMatrix {
     public static void main(String[] args) {
         // input array
         //Test cases
-        int[][] adjMatrix = {
-                {0, 1, 1, 1},
-                {1, 0, 1, 0},
-                {1, 1, 0, 1},
-                {1, 1, 1, 0}
+        int[][] adjMatrix1 = {
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0}
         };
+
         // Creates the graph with the given adjacency matrix
-        Graph G = createGraph(adjMatrix);
+        Graph G = createGraph(adjMatrix1);
         countEdges(G);
     }
 }

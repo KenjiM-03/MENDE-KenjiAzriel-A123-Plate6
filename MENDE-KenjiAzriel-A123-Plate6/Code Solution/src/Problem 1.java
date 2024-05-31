@@ -1,4 +1,5 @@
-public class GraphConnected extends Graph {
+//Problem 1
+ class GraphConnected extends Graph {
 
     // Constructor to initialize the graph
     public GraphConnected(int numVertices, boolean isDirected) {
@@ -21,13 +22,12 @@ public class GraphConnected extends Graph {
 
         return true;
     }
-
     // Counts the number of connected components
     public int countComponents() {
-        boolean[] visited = new boolean[numVertices];
         int count = 0;
+        boolean[] visited = new boolean[numVertices];
 
-        // Check for components in each unvisited vertex
+        // Iterate through all vertices
         for (int i = 0; i < numVertices; i++) {
             if (!visited[i]) {
                 count++;
@@ -37,6 +37,8 @@ public class GraphConnected extends Graph {
 
         return count;
     }
+
+
 
     protected void dfs(int u, boolean[] visited) {
         visited[u] = true;
@@ -51,21 +53,17 @@ public class GraphConnected extends Graph {
     }
 
 
-    public static void main(String[] args) {
-        // Create an undirected graph
-        GraphConnected g = new GraphConnected(4, false);
-        g.addEdge(0, 1);
-        g.addEdge(1, 2);
-        g.addEdge(2, 3);
-        g.addEdge(3, 0);
-        System.out.println("Adjacency Matrix: ");
-        System.out.print(g);
 
-        if (g.isConnected()) {
+    public static void main(String[] args) {
+        GraphConnected g5 = new GraphConnected(1, true);
+
+
+
+        if (g5.isConnected()) {
             System.out.println("Graph is connected");
         } else {
             System.out.println("Graph is not connected");
-            System.out.println("Number of connected components: " + g.countComponents());
+            System.out.println("Number of connected components: " + g5.countComponents());
         }
     }
 }

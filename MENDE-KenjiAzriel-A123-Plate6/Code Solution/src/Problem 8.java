@@ -1,4 +1,6 @@
+//Problem 8
 import java.util.Arrays;
+
 
 class IsomorphicGraph extends Graph {
 
@@ -29,26 +31,15 @@ class IsomorphicGraph extends Graph {
         return Arrays.equals(g1Rows, g2Rows);
     }
     public static void main(String[] args) {
-        // Create two graphs
-        IsomorphicGraph graph1 = new IsomorphicGraph(5, false);
-        IsomorphicGraph graph2 = new IsomorphicGraph(5, false);
+        // Create two empty graphs
+        IsomorphicGraph graph1 = new IsomorphicGraph(0, false);
+        IsomorphicGraph graph2 = new IsomorphicGraph(0, false);
 
-        // Adding edges to graph1
-        graph1.addEdge(0, 1);
-        graph1.addEdge(0, 2);
-        graph1.addEdge(1, 2);
-        graph1.addEdge(1, 3);
-        graph1.addEdge(3, 4);
-
-        // Adding edges to graph2
-        graph2.addEdge(0, 1);
-        graph2.addEdge(0, 2);
-        graph2.addEdge(1, 2);
-        graph2.addEdge(1, 3);
-        graph2.addEdge(3, 4);
-
-        // Check if the graphs are isomorphic
+// Check if the graphs are isomorphic
         boolean result = IsomorphicGraph.isIsomorphic(graph1, graph2);
         System.out.println("Graphs are isomorphic: " + result);
+
+
+
     }
 }
