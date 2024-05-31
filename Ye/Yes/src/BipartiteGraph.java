@@ -50,19 +50,22 @@ class BipartiteGraph extends Graph {
         }
         return true;
     }
+    //Test Cases
     public static void main(String[] args) {
-        BipartiteGraph bipartiteGraph = new BipartiteGraph(5, false);
+        BipartiteGraph bipartiteGraph = new BipartiteGraph(6, false);
 
-        // Adding edges
+        // Adding edges to the bipartite graph
         bipartiteGraph.addEdge(0, 1);
+        bipartiteGraph.addEdge(0, 3);
         bipartiteGraph.addEdge(2, 1);
-        bipartiteGraph.addEdge(2, 3);
+        bipartiteGraph.addEdge(2, 5);
         bipartiteGraph.addEdge(4, 3);
+        bipartiteGraph.addEdge(4, 5);
 
+        // Print the adjacency matrix
         System.out.println(bipartiteGraph);
 
         // Check if the graph is bipartite
         System.out.println("Is the graph bipartite? " + bipartiteGraph.isBipartite());
     }
 }
-

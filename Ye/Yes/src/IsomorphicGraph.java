@@ -7,7 +7,7 @@ class IsomorphicGraph extends Graph {
     }
 
     // Check if two graphs are isomorphic
-    public static boolean areIsomorphic(Graph g1, Graph g2) {
+    public static boolean isIsomorphic(Graph g1, Graph g2) {
         if (g1.numVertices != g2.numVertices || g1.isDirected != g2.isDirected) {
             return false;
         }
@@ -48,7 +48,7 @@ class IsomorphicGraph extends Graph {
         graph2.addEdge(3, 4);
 
         // Check if the graphs are isomorphic
-        boolean result = IsomorphicGraph.areIsomorphic(graph1, graph2);
+        boolean result = IsomorphicGraph.isIsomorphic(graph1, graph2);
         System.out.println("Graphs are isomorphic: " + result);
     }
 }

@@ -45,4 +45,16 @@ class IncidenceMatrixGraph extends Graph {
         }
         System.out.println(s.toString());
     }
+    public static void main(String[] args) {
+        // Test Case 1: Undirected Graph
+        Graph g = new Graph(4, false);
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 3);
+
+        System.out.println("Incidence Matrix:");
+        IncidenceMatrixGraph incGraph1 = new IncidenceMatrixGraph(g);
+        incGraph1.printIncidenceMatrix();
+    }
 }
